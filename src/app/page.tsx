@@ -1,0 +1,389 @@
+'use client';
+
+import { useState, useEffect } from "react";
+import Image from "next/image";
+
+export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isReviewsHovered, setIsReviewsHovered] = useState(false);
+  const [isServicesHovered, setIsServicesHovered] = useState(false);
+
+  const backgroundImages = [
+    "/images/Watch+repair.jpg",
+    "/images/3472287c462f5ae1cba3f2700f87982c.jpg",
+    "/images/97a1be8f271f86b2c3ca8f59ea2e1711.jpg",
+    "/images/83ec0702d14be7eefe7db9d70f625948.jpg",
+    "/images/how-long-does-resizing-a-ring-take_6210843421512549660_20250421.webp"
+  ];
+
+  const services = [
+    {
+      title: "Watch Repair",
+      description: "Professional watch repair services including battery replacement, strap adjustment, movement repair, and full servicing for all brands.",
+      features: ["Battery Replacement", "Strap Adjustment", "Movement Repair", "Water Resistance Testing"],
+      image: "/images/Watch+repair.jpg"
+    },
+    {
+      title: "Jewellery Repair",
+      description: "Expert jewellery repair and restoration services to bring your precious pieces back to life.",
+      features: ["Ring Resizing", "Chain Repair", "Stone Setting", "Cleaning & Polishing"],
+      image: "/images/how-long-does-resizing-a-ring-take_6210843421512549660_20250421.webp"
+    },
+    {
+      title: "Key Cutting",
+      description: "Precise key cutting services for all types of keys including house, car, and specialty keys.",
+      features: ["House Keys", "Car Keys", "Office Keys", "Specialty Keys"],
+      image: "/images/key_cutting.jpeg"
+    },
+    {
+      title: "Fob Duplication",
+      description: "Fast and accurate key duplication including electronic fobs and transponder keys.",
+      features: ["Electronic Fobs", "Transponder Keys", "Remote Keys", "Smart Keys"],
+      image: "/images/fob_duplicate.jpg"
+    }
+  ];
+
+  const reviews = [
+    {
+      name: "Roberto Savoia",
+      rating: 5,
+      comment: "Excellent service! Fixed my grandmother's watch in just a few hours. Very professional and reasonably priced."
+    },
+    {
+      name: "Josh Nahmias",
+      rating: 5,
+      comment: "Literally fixed my watch strap in 30 minutes for zero charge. Nobody, and I mean nobody, would have ever done that for me. Seriously, thanks a lot. I highly, highly recommend Andrew, literally the best in the business."
+    },
+    {
+      name: "Angela Ho",
+      rating: 5,
+      comment: "Had two watch batteries replaced, it was done very quickly and efficiently - both were ready for pick up in 10 minutes. Prices are very reasonable, may vary based on the watch? The owner was also very nice and friendly. I would recommend coming here for watch battery replacements, I certainly would come back!"
+    },
+    {
+      name: "Amir Mito",
+      rating: 5,
+      comment: "Replaced my watch battery in 5 minutes, great price and customer service. Highly recommend!"
+    },
+    {
+      name: "Jacqueline Cho",
+      rating: 5,
+      comment: "I have had multiple watches repaired here and the owner is always kind, courteous, and efficient. I have never had a repair take more than 15 minutes, and prices are more than fair for the quality of service. Cannot recommend highly enough."
+    }
+  ];
+
+  // Rotating background images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        (prevIndex + 1) % backgroundImages.length
+      );
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [backgroundImages.length]);
+
+  return (
+    <div className="min-h-screen bg-black text-white font-['Inter']">
+      {/* Navigation */}
+      <nav className="bg-black shadow-lg sticky top-0 z-50 border-b border-yellow-500">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center">
+              <h1 className="text-2xl font-bold text-yellow-400 font-['Poppins']">9 to 5 Watch Repair</h1>
+            </div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:block">
+              <div className="ml-12 flex items-baseline space-x-8">
+                <a href="#home" className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors font-['Inter']">Home</a>
+                <a href="#services" className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors font-['Inter']">Services</a>
+                <a href="#about" className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors font-['Inter']">About</a>
+                <a href="#reviews" className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors font-['Inter']">Reviews</a>
+                <a href="#contact" className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors font-['Inter']">Contact</a>
+              </div>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-300 hover:text-yellow-400 focus:outline-none focus:text-yellow-400"
+              >
+                <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <div className="md:hidden">
+              <div className="px-4 pt-3 pb-4 space-y-2 sm:px-5 bg-black border-b border-yellow-500">
+                <a href="#home" className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Home</a>
+                <a href="#services" className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Services</a>
+                <a href="#about" className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">About</a>
+                <a href="#reviews" className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Reviews</a>
+                <a href="#contact" className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Contact</a>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="relative bg-black py-20 min-h-screen flex items-center">
+        {/* Background Images */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-40"></div>
+        {backgroundImages.map((image, index) => (
+          <div 
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentImageIndex ? 'opacity-60' : 'opacity-0'
+            }`}
+          >
+            <Image 
+              src={image} 
+              alt={`Background ${index + 1}`} 
+              fill 
+              className="object-cover"
+              priority={index === 0}
+            />
+          </div>
+        ))}
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 font-['Poppins']">
+            9 to 5 Watch Repair & Jewellery Repair
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-['Inter']">
+            Expert repairs for watches, jewelry, and keys. Fast, friendly, and reliable service with over 20 years of experience.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#services" className="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-3 rounded-lg font-semibold transition-colors font-['Inter']">
+              Our Services
+            </a>
+            <a href="#contact" className="bg-transparent border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-8 py-3 rounded-lg font-semibold transition-colors font-['Inter']">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4 font-['Poppins']">Our Services</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto font-['Inter']">
+              Professional repair and duplication services for all your needs
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <div 
+                key={index} 
+                className="bg-black rounded-2xl overflow-hidden hover:bg-gray-800 transition-all duration-300 border border-yellow-500/20 shadow-lg hover:shadow-yellow-500/10 hover:scale-105 cursor-pointer group"
+              >
+                {/* Service Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <Image 
+                    src={service.image} 
+                    alt={service.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                
+                {/* Service Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-white mb-3 text-center font-['Poppins']">{service.title}</h3>
+                  <p className="text-gray-300 mb-4 text-center font-['Inter'] leading-relaxed text-sm">{service.description}</p>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="text-xs text-gray-400 flex items-center font-['Inter']">
+                        <span className="text-yellow-400 mr-2 text-sm">✓</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 bg-black relative overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-white mb-6 font-['Poppins']">Meet Andrew - "Mr Fix It"</h2>
+              
+              {/* Mobile Workshop Emoji */}
+              <div className="lg:hidden text-center mb-6">
+                <span className="text-8xl block">🏪</span>
+                <p className="text-gray-300 font-['Inter'] mt-2">Andrew's Professional Workshop</p>
+              </div>
+              
+              <p className="text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed">
+                Known as "Mr Fix It" around the neighborhood, Andrew is always willing to help fix your watches, get keys cut, or even help you out with anything else! With over 20 years of experience in the repair industry, he's become the go-to person for all things that need fixing.
+              </p>
+              <p className="text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed">
+                Always smiling, cheerful, and with a dry sense of humour, Andrew's passion for his craft shines through in every repair. Whether it's a delicate watch movement, a precious piece of jewelry, or a simple key duplication, he approaches each job with the same dedication and attention to detail.
+              </p>
+              <p className="text-lg text-gray-300 mb-8 font-['Inter'] leading-relaxed">
+                His workshop at 9 to 5 Watch Repair & Jewellery Repair is more than just a business - it's a place where customers become friends, and every repair tells a story. Andrew's commitment to quality workmanship and genuine care for his customers has made him a trusted name in the community.
+              </p>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-yellow-400 font-['Poppins']">20+</div>
+                  <div className="text-gray-400 font-['Inter']">Years Experience</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-yellow-400 font-['Poppins']">1000+</div>
+                  <div className="text-gray-400 font-['Inter']">Happy Customers</div>
+                </div>
+              </div>
+            </div>
+            <div className="hidden lg:block bg-gray-800 rounded-2xl p-8 h-96 flex items-center justify-center border border-yellow-500/20 shadow-lg">
+              <div className="text-center">
+                <span className="text-8xl mb-4 block">🏪</span>
+                <p className="text-gray-300 font-['Inter']">Andrew's Professional Workshop</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section id="reviews" className="py-20 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4 font-['Poppins']">What Our Customers Say</h2>
+            <p className="text-xl text-gray-300 font-['Inter']">Read reviews from our satisfied customers</p>
+          </div>
+          
+          <div className="overflow-x-auto">
+            <div 
+              id="reviews-scroll" 
+              className="flex space-x-8 pb-4 scroll-smooth"
+            >
+              {reviews.map((review, index) => (
+                <div 
+                  key={index} 
+                  className="bg-black rounded-2xl p-8 border border-yellow-500/20 min-w-[400px] max-w-[400px] shadow-lg hover:shadow-yellow-500/10 hover:scale-110 transition-all duration-300 cursor-pointer"
+                >
+                  <div className="flex items-center mb-6">
+                    <div className="flex text-yellow-400">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <span key={i} className="text-xl">⭐</span>
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-gray-300 mb-6 italic font-['Inter'] leading-relaxed text-lg">"{review.comment}"</p>
+                  <p className="text-yellow-400 font-semibold font-['Poppins']">- {review.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="text-center mt-12">
+            <a 
+              href="https://www.google.com/search?q=9+to+5+watch+repair+jewellery+repair+reviews" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-3 rounded-lg font-semibold transition-colors font-['Inter']"
+            >
+              <span className="mr-2">⭐</span>
+              Read More Google Reviews
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4 font-['Poppins']">Contact Us</h2>
+            <p className="text-xl text-gray-300 font-['Inter']">Get in touch with us today</p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <div className="bg-gray-800 rounded-2xl p-8 border border-yellow-500/20 shadow-lg">
+              <h3 className="text-2xl font-bold text-white mb-6 font-['Poppins']">Get In Touch</h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-center">
+                  <span className="text-2xl mr-4">📍</span>
+                  <div>
+                    <p className="text-white font-semibold font-['Inter']">Address</p>
+                    <p className="text-gray-300 font-['Inter']">777 Bay Street, Toronto, ON M5G 2C8</p>
+                    <p className="text-gray-300 font-['Inter']">Across from Farm Boys</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center">
+                  <span className="text-2xl mr-4">📞</span>
+                  <div>
+                    <p className="text-white font-semibold font-['Inter']">Phone</p>
+                    <p className="text-gray-300 font-['Inter']">(416) 839-0071</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center">
+                  <span className="text-2xl mr-4">✉️</span>
+                  <div>
+                    <p className="text-white font-semibold font-['Inter']">Email</p>
+                    <p className="text-gray-300 font-['Inter']">info@9to5repair.com</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center">
+                  <span className="text-2xl mr-4">🕐</span>
+                  <div>
+                    <p className="text-white font-semibold font-['Inter']">Hours</p>
+                    <p className="text-gray-300 font-['Inter']">Monday - Friday: 11:00 AM - 6:00 PM</p>
+                    <p className="text-gray-300 font-['Inter']">Saturday - Sunday: Closed</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Google Maps */}
+            <div className="bg-gray-800 rounded-2xl p-8 border border-yellow-500/20 shadow-lg">
+              <h3 className="text-2xl font-bold text-white mb-6 font-['Poppins']">Find Us</h3>
+              <div className="bg-gray-700 rounded-xl h-64 flex items-center justify-center">
+                <div className="text-center">
+                  <span className="text-6xl mb-4 block">🗺️</span>
+                  <a 
+                    href="https://maps.google.com/?q=777+Bay+Street+Toronto+ON" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-lg font-semibold transition-colors font-['Inter']"
+                  >
+                    Open in Google Maps
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 py-8 border-t border-yellow-500/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-gray-300 font-['Inter']">
+            © 2025 9 to 5 Watch Repair & Jewellery Repair. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
