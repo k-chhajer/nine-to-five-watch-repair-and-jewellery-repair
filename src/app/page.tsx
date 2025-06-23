@@ -219,7 +219,7 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-white mb-6 font-['Poppins']">Meet Andrew - "Mr Fix It"</h2>
+              <h2 className="text-4xl font-bold text-white mb-6 font-['Poppins']">Meet Andrew - &quot;Mr Fix It&quot;</h2>
               
               {/* Mobile Workshop Emoji */}
               <div className="lg:hidden text-center mb-6">
