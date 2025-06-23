@@ -6,8 +6,6 @@ import Image from "next/image";
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isReviewsHovered, setIsReviewsHovered] = useState(false);
-  const [isServicesHovered, setIsServicesHovered] = useState(false);
 
   const backgroundImages = [
     "/images/Watch+repair.jpg",
@@ -226,17 +224,17 @@ export default function Home() {
               {/* Mobile Workshop Emoji */}
               <div className="lg:hidden text-center mb-6">
                 <span className="text-8xl block">🏪</span>
-                <p className="text-gray-300 font-['Inter'] mt-2">Andrew's Professional Workshop</p>
+                <p className="text-gray-300 font-['Inter'] mt-2">Andrew&apos;s Professional Workshop</p>
               </div>
               
               <p className="text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed">
-                Known as "Mr Fix It" around the neighborhood, Andrew is always willing to help fix your watches, get keys cut, or even help you out with anything else! With over 20 years of experience in the repair industry, he's become the go-to person for all things that need fixing.
+                Known as &quot;Mr Fix It&quot; around the neighborhood, Andrew is always willing to help fix your watches, get keys cut, or even help you out with anything else! With over 20 years of experience in the repair industry, he&apos;s become the go-to person for all things that need fixing.
               </p>
               <p className="text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed">
-                Always smiling, cheerful, and with a dry sense of humour, Andrew's passion for his craft shines through in every repair. Whether it's a delicate watch movement, a precious piece of jewelry, or a simple key duplication, he approaches each job with the same dedication and attention to detail.
+                Always smiling, cheerful, and with a dry sense of humour, Andrew&apos;s passion for his craft shines through in every repair. Whether it&apos;s a delicate watch movement, a precious piece of jewelry, or a simple key duplication, he approaches each job with the same dedication and attention to detail.
               </p>
               <p className="text-lg text-gray-300 mb-8 font-['Inter'] leading-relaxed">
-                His workshop at 9 to 5 Watch Repair & Jewellery Repair is more than just a business - it's a place where customers become friends, and every repair tells a story. Andrew's commitment to quality workmanship and genuine care for his customers has made him a trusted name in the community.
+                His workshop at 9 to 5 Watch Repair &amp; Jewellery Repair is more than just a business - it&apos;s a place where customers become friends, and every repair tells a story. Andrew&apos;s commitment to quality workmanship and genuine care for his customers has made him a trusted name in the community.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
@@ -252,7 +250,7 @@ export default function Home() {
             <div className="hidden lg:block bg-gray-800 rounded-2xl p-8 h-96 flex items-center justify-center border border-yellow-500/20 shadow-lg">
               <div className="text-center">
                 <span className="text-8xl mb-4 block">🏪</span>
-                <p className="text-gray-300 font-['Inter']">Andrew's Professional Workshop</p>
+                <p className="text-gray-300 font-['Inter']">Andrew&apos;s Professional Workshop</p>
               </div>
             </div>
           </div>
@@ -284,7 +282,7 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  <p className="text-gray-300 mb-6 italic font-['Inter'] leading-relaxed text-lg">"{review.comment}"</p>
+                  <p className="text-gray-300 mb-6 italic font-['Inter'] leading-relaxed text-lg">&quot;{review.comment}&quot;</p>
                   <p className="text-yellow-400 font-semibold font-['Poppins']">- {review.name}</p>
                 </div>
               ))}
