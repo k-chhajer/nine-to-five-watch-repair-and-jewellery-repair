@@ -1,11 +1,17 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [animatedServices, setAnimatedServices] = useState<boolean[]>([]);
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
+  const [isAboutVisible, setIsAboutVisible] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
 
   const backgroundImages = [
     "/images/Watch+repair.jpg",
@@ -81,6 +87,78 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [backgroundImages.length]);
 
+  // Intersection Observer for hero animation
+  useEffect(() => {
+    const heroObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsHeroVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (heroRef.current) {
+      heroObserver.observe(heroRef.current);
+    }
+
+    return () => {
+      if (heroRef.current) {
+        heroObserver.unobserve(heroRef.current);
+      }
+    };
+  }, []);
+
+  // Intersection Observer for services animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Animate all services at the same time
+            setAnimatedServices(new Array(services.length).fill(true));
+          } else {
+            // Reset animations when section is out of view
+            setAnimatedServices(new Array(services.length).fill(false));
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (servicesRef.current) {
+      observer.observe(servicesRef.current);
+    }
+
+    return () => {
+      if (servicesRef.current) {
+        observer.unobserve(servicesRef.current);
+      }
+    };
+  }, []);
+
+  // Intersection Observer for about section animation
+  useEffect(() => {
+    const aboutObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsAboutVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (aboutRef.current) {
+      aboutObserver.observe(aboutRef.current);
+    }
+
+    return () => {
+      if (aboutRef.current) {
+        aboutObserver.unobserve(aboutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white font-['Inter']">
       {/* Navigation */}
@@ -151,14 +229,20 @@ export default function Home() {
           </div>
         ))}
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 font-['Poppins']">
+        <div ref={heroRef} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className={`text-5xl md:text-6xl font-bold text-white mb-6 font-['Poppins'] transform transition-all duration-1000 ease-out ${
+            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
             9 to 5 Watch Repair & Jewellery Repair
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-['Inter']">
+          <p className={`text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-['Inter'] transform transition-all duration-1000 ease-out delay-300 ${
+            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
             Expert repairs for watches, jewelry, and keys. Fast, friendly, and reliable service with over 20 years of experience.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center transform transition-all duration-1000 ease-out delay-500 ${
+            isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
             <a href="#services" className="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-3 rounded-lg font-semibold transition-colors font-['Inter']">
               Our Services
             </a>
@@ -179,11 +263,15 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div ref={servicesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <div 
                 key={index} 
-                className="bg-black rounded-2xl overflow-hidden hover:bg-gray-800 transition-all duration-300 border border-yellow-500/20 shadow-lg hover:shadow-yellow-500/10 hover:scale-105 cursor-pointer group"
+                className={`bg-black rounded-2xl overflow-hidden hover:bg-gray-800 transition-all duration-300 border border-yellow-500/20 shadow-lg hover:shadow-yellow-500/10 hover:scale-105 cursor-pointer group transform transition-all duration-700 ease-out ${
+                  animatedServices[index] 
+                    ? 'opacity-100 translate-y-0 scale-100' 
+                    : 'opacity-0 translate-y-20 scale-95'
+                }`}
               >
                 {/* Service Image */}
                 <div className="relative h-48 overflow-hidden">
@@ -216,27 +304,39 @@ export default function Home() {
 
       {/* About Section */}
       <section id="about" className="py-20 bg-black relative overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={aboutRef} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-white mb-6 font-['Poppins']">Meet Andrew - &quot;Mr Fix It&quot;</h2>
+              <h2 className={`text-4xl font-bold text-white mb-6 font-['Poppins'] transform transition-all duration-1000 ease-out ${
+                isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>Meet Andrew - &quot;Mr Fix It&quot;</h2>
               
               {/* Mobile Workshop Emoji */}
-              <div className="lg:hidden text-center mb-6">
+              <div className={`lg:hidden text-center mb-6 transform transition-all duration-1000 ease-out delay-200 ${
+                isAboutVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+              }`}>
                 <span className="text-8xl block">🏪</span>
                 <p className="text-gray-300 font-['Inter'] mt-2">Andrew&apos;s Professional Workshop</p>
               </div>
               
-              <p className="text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed">
+              <p className={`text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed transform transition-all duration-1000 ease-out delay-300 ${
+                isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
                 Known as &quot;Mr Fix It&quot; around the neighborhood, Andrew is always willing to help fix your watches, get keys cut, or even help you out with anything else! With over 20 years of experience in the repair industry, he&apos;s become the go-to person for all things that need fixing.
               </p>
-              <p className="text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed">
+              <p className={`text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed transform transition-all duration-1000 ease-out delay-400 ${
+                isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
                 Always smiling, cheerful, and with a dry sense of humour, Andrew&apos;s passion for his craft shines through in every repair. Whether it&apos;s a delicate watch movement, a precious piece of jewelry, or a simple key duplication, he approaches each job with the same dedication and attention to detail.
               </p>
-              <p className="text-lg text-gray-300 mb-8 font-['Inter'] leading-relaxed">
+              <p className={`text-lg text-gray-300 mb-8 font-['Inter'] leading-relaxed transform transition-all duration-1000 ease-out delay-500 ${
+                isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
                 His workshop at 9 to 5 Watch Repair &amp; Jewellery Repair is more than just a business - it&apos;s a place where customers become friends, and every repair tells a story. Andrew&apos;s commitment to quality workmanship and genuine care for his customers has made him a trusted name in the community.
               </p>
-              <div className="grid grid-cols-2 gap-6">
+              <div className={`grid grid-cols-2 gap-6 transform transition-all duration-1000 ease-out delay-600 ${
+                isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-yellow-400 font-['Poppins']">20+</div>
                   <div className="text-gray-400 font-['Inter']">Years Experience</div>
@@ -247,7 +347,9 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="hidden lg:block bg-gray-800 rounded-2xl p-8 h-96 flex items-center justify-center border border-yellow-500/20 shadow-lg">
+            <div className={`hidden lg:block bg-gray-800 rounded-2xl p-8 h-96 flex items-center justify-center border border-yellow-500/20 shadow-lg transform transition-all duration-1000 ease-out delay-200 ${
+              isAboutVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+            }`}>
               <div className="text-center">
                 <span className="text-8xl mb-4 block">🏪</span>
                 <p className="text-gray-300 font-['Inter']">Andrew&apos;s Professional Workshop</p>
