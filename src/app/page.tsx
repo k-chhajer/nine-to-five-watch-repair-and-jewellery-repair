@@ -9,16 +9,22 @@ export default function Home() {
   const [animatedServices, setAnimatedServices] = useState<boolean[]>([]);
   const [isHeroVisible, setIsHeroVisible] = useState(false);
   const [isAboutVisible, setIsAboutVisible] = useState(false);
+  const [isServicesHeaderVisible, setIsServicesHeaderVisible] = useState(false);
+  const [isContactVisible, setIsContactVisible] = useState(false);
+  const [isReviewsVisible, setIsReviewsVisible] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const servicesHeaderRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+  const reviewsRef = useRef<HTMLDivElement>(null);
 
   const backgroundImages = [
     "/images/Watch+repair.jpg",
-    "/images/3472287c462f5ae1cba3f2700f87982c.jpg",
-    "/images/97a1be8f271f86b2c3ca8f59ea2e1711.jpg",
+    "/images/97a1be8f271f86b2c3ca8f59ea2e17112.jpg",
     "/images/83ec0702d14be7eefe7db9d70f625948.jpg",
-    "/images/how-long-does-resizing-a-ring-take_6210843421512549660_20250421.webp"
+    "/images/how-long-does-resizing-a-ring-take_6210843421512549660_20250421.webp",
+    "/images/pexels-quang-viet-nguyen-107013384-13703306.jpg"
   ];
 
   const services = [
@@ -62,7 +68,7 @@ export default function Home() {
     {
       name: "Angela Ho",
       rating: 5,
-      comment: "Had two watch batteries replaced, it was done very quickly and efficiently - both were ready for pick up in 10 minutes. Prices are very reasonable, may vary based on the watch? The owner was also very nice and friendly. I would recommend coming here for watch battery replacements, I certainly would come back!"
+      comment: "Had two watch batteries replaced, it was done very quickly and efficiently - both were ready for pick up in 10 minutes. The owner was also very nice and friendly. I would recommend coming here for watch battery replacements, I certainly would come back!"
     },
     {
       name: "Amir Mito",
@@ -159,6 +165,77 @@ export default function Home() {
     };
   }, []);
 
+  // Intersection Observer for services header animation
+  useEffect(() => {
+    const servicesHeaderObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsServicesHeaderVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (servicesHeaderRef.current) {
+      servicesHeaderObserver.observe(servicesHeaderRef.current);
+    }
+
+    return () => {
+      if (servicesHeaderRef.current) {
+        servicesHeaderObserver.unobserve(servicesHeaderRef.current);
+      }
+    };
+  }, []);
+
+  // Intersection Observer for contact section animation
+  useEffect(() => {
+    const contactObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsContactVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (contactRef.current) {
+      contactObserver.observe(contactRef.current);
+    }
+
+    return () => {
+      if (contactRef.current) {
+        contactObserver.unobserve(contactRef.current);
+      }
+    };
+  }, []);
+
+  // Intersection Observer for reviews section animation
+  useEffect(() => {
+    const reviewsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsReviewsVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (reviewsRef.current) {
+      reviewsObserver.observe(reviewsRef.current);
+    }
+
+    return () => {
+      if (reviewsRef.current) {
+        reviewsObserver.unobserve(reviewsRef.current);
+      }
+    };
+  }, []);
+
+  // Function to handle navigation clicks and close mobile menu
+  const handleNavigationClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-black text-white font-['Inter']">
       {/* Navigation */}
@@ -197,11 +274,11 @@ export default function Home() {
           {isMenuOpen && (
             <div className="md:hidden">
               <div className="px-4 pt-3 pb-4 space-y-2 sm:px-5 bg-black border-b border-yellow-500">
-                <a href="#home" className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Home</a>
-                <a href="#services" className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Services</a>
-                <a href="#about" className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">About</a>
-                <a href="#reviews" className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Reviews</a>
-                <a href="#contact" className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Contact</a>
+                <a href="#home" onClick={handleNavigationClick} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Home</a>
+                <a href="#services" onClick={handleNavigationClick} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Services</a>
+                <a href="#about" onClick={handleNavigationClick} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">About</a>
+                <a href="#reviews" onClick={handleNavigationClick} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Reviews</a>
+                <a href="#contact" onClick={handleNavigationClick} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Contact</a>
               </div>
             </div>
           )}
@@ -238,7 +315,7 @@ export default function Home() {
           <p className={`text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-['Inter'] transform transition-all duration-1000 ease-out delay-300 ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            Expert repairs for watches, jewelry, and keys. Fast, friendly, and reliable service with over 20 years of experience.
+            Expert repairs for watches, jewellery, and keys. Fast, friendly, and reliable service with over 25 years of experience.
           </p>
           <div className={`flex flex-col sm:flex-row gap-4 justify-center transform transition-all duration-1000 ease-out delay-500 ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -256,9 +333,13 @@ export default function Home() {
       {/* Services Section */}
       <section id="services" className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4 font-['Poppins']">Our Services</h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto font-['Inter']">
+          <div ref={servicesHeaderRef} className="text-center mb-16">
+            <h2 className={`text-4xl font-bold text-white mb-4 font-['Poppins'] transform transition-all duration-1000 ease-out ${
+              isServicesHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>Our Services</h2>
+            <p className={`text-xl text-gray-300 max-w-2xl mx-auto font-['Inter'] transform transition-all duration-1000 ease-out delay-300 ${
+              isServicesHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
               Professional repair and duplication services for all your needs
             </p>
           </div>
@@ -327,7 +408,7 @@ export default function Home() {
               <p className={`text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed transform transition-all duration-1000 ease-out delay-400 ${
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
-                Always smiling, cheerful, and with a dry sense of humour, Andrew&apos;s passion for his craft shines through in every repair. Whether it&apos;s a delicate watch movement, a precious piece of jewelry, or a simple key duplication, he approaches each job with the same dedication and attention to detail.
+                Always smiling, cheerful, and with a dry sense of humour, Andrew&apos;s passion for his craft shines through in every repair. Whether it&apos;s a delicate watch movement, a precious piece of jewellery, or a simple key duplication, he approaches each job with the same dedication and attention to detail.
               </p>
               <p className={`text-lg text-gray-300 mb-8 font-['Inter'] leading-relaxed transform transition-all duration-1000 ease-out delay-500 ${
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -338,7 +419,7 @@ export default function Home() {
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400 font-['Poppins']">20+</div>
+                  <div className="text-3xl font-bold text-yellow-400 font-['Poppins']">25+</div>
                   <div className="text-gray-400 font-['Inter']">Years Experience</div>
                 </div>
                 <div className="text-center">
@@ -361,13 +442,19 @@ export default function Home() {
 
       {/* Reviews Section */}
       <section id="reviews" className="py-20 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={reviewsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4 font-['Poppins']">What Our Customers Say</h2>
-            <p className="text-xl text-gray-300 font-['Inter']">Read reviews from our satisfied customers</p>
+            <h2 className={`text-4xl font-bold text-white mb-4 font-['Poppins'] transform transition-all duration-1000 ease-out ${
+              isReviewsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>What Our Customers Say</h2>
+            <p className={`text-xl text-gray-300 font-['Inter'] transform transition-all duration-1000 ease-out delay-300 ${
+              isReviewsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>Read reviews from our satisfied customers</p>
           </div>
           
-          <div className="overflow-x-auto">
+          <div className={`overflow-x-auto transform transition-all duration-1000 ease-out delay-500 ${
+            isReviewsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
             <div 
               id="reviews-scroll" 
               className="flex space-x-8 pb-4 scroll-smooth"
@@ -391,7 +478,9 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="text-center mt-12">
+          <div className={`text-center mt-12 transform transition-all duration-1000 ease-out delay-700 ${
+            isReviewsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
             <a 
               href="https://www.google.com/search?q=9+to+5+watch+repair+jewellery+repair+reviews" 
               target="_blank" 
@@ -407,13 +496,19 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={contactRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4 font-['Poppins']">Contact Us</h2>
-            <p className="text-xl text-gray-300 font-['Inter']">Get in touch with us today</p>
+            <h2 className={`text-4xl font-bold text-white mb-4 font-['Poppins'] transform transition-all duration-1000 ease-out ${
+              isContactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>Contact Us</h2>
+            <p className={`text-xl text-gray-300 font-['Inter'] transform transition-all duration-1000 ease-out delay-300 ${
+              isContactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>Get in touch with us today</p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 transform transition-all duration-1000 ease-out delay-500 ${
+            isContactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
             {/* Contact Information */}
             <div className="bg-gray-800 rounded-2xl p-8 border border-yellow-500/20 shadow-lg">
               <h3 className="text-2xl font-bold text-white mb-6 font-['Poppins']">Get In Touch</h3>
@@ -437,18 +532,10 @@ export default function Home() {
                 </div>
                 
                 <div className="flex items-center">
-                  <span className="text-2xl mr-4">✉️</span>
-                  <div>
-                    <p className="text-white font-semibold font-['Inter']">Email</p>
-                    <p className="text-gray-300 font-['Inter']">info@9to5repair.com</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center">
                   <span className="text-2xl mr-4">🕐</span>
                   <div>
                     <p className="text-white font-semibold font-['Inter']">Hours</p>
-                    <p className="text-gray-300 font-['Inter']">Monday - Friday: 11:00 AM - 6:00 PM</p>
+                    <p className="text-gray-300 font-['Inter']">Monday - Friday: 11:00 AM - 4:00 PM</p>
                     <p className="text-gray-300 font-['Inter']">Saturday - Sunday: Closed</p>
                   </div>
                 </div>
