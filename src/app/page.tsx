@@ -20,11 +20,11 @@ export default function Home() {
   const reviewsRef = useRef<HTMLDivElement>(null);
 
   const backgroundImages = [
-    "/images/Watch+repair.jpg",
-    "/images/97a1be8f271f86b2c3ca8f59ea2e17112.jpg",
-    "/images/83ec0702d14be7eefe7db9d70f625948.jpg",
-    "/images/how-long-does-resizing-a-ring-take_6210843421512549660_20250421.webp",
-    "/images/pexels-quang-viet-nguyen-107013384-13703306.jpg"
+    "/images/watch_repair.jpg",
+    "/images/jewellery_repair.webp",
+    "/images/jewellery_necklace.jpg",
+    "/images/omega_watch.jpg",
+    "/images/watch.jpg"
   ];
 
   const services = [
@@ -32,13 +32,13 @@ export default function Home() {
       title: "Watch Repair",
       description: "Professional watch repair services including battery replacement, strap adjustment, movement repair, and full servicing for all brands.",
       features: ["Battery Replacement", "Strap Adjustment", "Movement Repair", "Water Resistance Testing"],
-      image: "/images/Watch+repair.jpg"
+      image: "/images/watch_repair.jpg"
     },
     {
       title: "Jewellery Repair",
       description: "Expert jewellery repair and restoration services to bring your precious pieces back to life.",
       features: ["Ring Resizing", "Chain Repair", "Stone Setting", "Cleaning & Polishing"],
-      image: "/images/how-long-does-resizing-a-ring-take_6210843421512549660_20250421.webp"
+      image: "/images/jewellery_repair.webp"
     },
     {
       title: "Key Cutting",
