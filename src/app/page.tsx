@@ -39,19 +39,19 @@ export default function Home() {
     {
       title: "Jewellery Repair",
       description: "Expert jewellery repair and restoration services to bring your precious pieces back to life.",
-      features: ["Ring Resizing", "Chain Repair", "Stone Setting", "Cleaning & Polishing"],
+      features: ["Ring Resizing", "Chain Repair", "Stone Setting", "Cleaning & Polishing", "Engagement Ring Designs"],
       image: "/images/jewellery_repair.webp"
     },
     {
       title: "Key Cutting",
-      description: "Precise key cutting services for all types of keys including house, car, and specialty keys.",
-      features: ["House Keys", "Car Keys", "Office Keys", "Specialty Keys"],
+      description: "Precise key cutting services for all types of keys including house and specialty keys.",
+      features: ["House Keys", "Office Keys", "Specialty Keys"],
       image: "/images/key_cutting.jpeg"
     },
     {
       title: "Fob Duplication",
-      description: "Fast and accurate key duplication including electronic fobs and transponder keys.",
-      features: ["Electronic Fobs", "Transponder Keys", "Remote Keys", "Smart Keys"],
+      description: "Fast and accurate key duplication including electronic fobs.",
+      features: ["Electronic Fobs"],
       image: "/images/fob_duplicate.jpg"
     }
   ];
@@ -273,10 +273,23 @@ export default function Home() {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      const startY = window.scrollY;
+      const endY = targetElement.getBoundingClientRect().top + window.scrollY;
+      const duration = 1200; // ms
+      const startTime = performance.now();
+
+      function scrollStep(currentTime: number) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = progress < 0.5
+          ? 2 * progress * progress
+          : -1 + (4 - 2 * progress) * progress;
+        window.scrollTo(0, startY + (endY - startY) * ease);
+        if (progress < 1) {
+          requestAnimationFrame(scrollStep);
+        }
+      }
+      requestAnimationFrame(scrollStep);
     }
   };
 
@@ -291,7 +304,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-yellow-400 font-['Poppins']">Watch and Jewellery Repair</h1>
+              <h1 className="text-2xl font-bold text-yellow-400 font-['Poppins']">Nine Two Five Watch and Jewellery Repair</h1>
             </div>
             
             {/* Desktop Navigation */}
@@ -360,12 +373,12 @@ export default function Home() {
           <h1 className={`text-5xl md:text-6xl font-bold text-white mb-6 font-['Poppins'] transform transition-all duration-1000 ease-out ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            9 to 5 Watch Repair & Jewellery Repair
+            Nine Two Five Watch Repair & Jewellery Repair
           </h1>
           <p className={`text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-['Inter'] transform transition-all duration-1000 ease-out delay-300 ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            Expert repairs for watches, jewellery, and keys. Fast, friendly, and reliable service with over 25 years of experience.
+            Expert repairs for watches, jewellery, key cutting and fob duplication. Fast, friendly, and reliable service with over 35 years of experience.
           </p>
           <div className={`flex flex-col sm:flex-row gap-4 justify-center transform transition-all duration-1000 ease-out delay-500 ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -461,7 +474,7 @@ export default function Home() {
               <p className={`text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed transform transition-all duration-1000 ease-out delay-300 ${
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
-                Known as &quot;Mr Fix It&quot; around the neighborhood, Andrew is always willing to help fix your watches, get keys cut, or even help you out with anything else! With over 20 years of experience in the repair industry, he&apos;s become the go-to person for all things that need fixing.
+                Known as &quot;Mr Fix It&quot; around the neighborhood, Andrew is always willing to help fix your watches, get keys cut, or even help you out with anything else! With over 35 years of experience in the repair industry, he&apos;s become the go-to person for all things that need fixing.
               </p>
               <p className={`text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed transform transition-all duration-1000 ease-out delay-400 ${
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -471,13 +484,13 @@ export default function Home() {
               <p className={`text-lg text-gray-300 mb-8 font-['Inter'] leading-relaxed transform transition-all duration-1000 ease-out delay-500 ${
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
-                His workshop at 9 to 5 Watch Repair &amp; Jewellery Repair is more than just a business - it&apos;s a place where customers become friends, and every repair tells a story. Andrew&apos;s commitment to quality workmanship and genuine care for his customers has made him a trusted name in the community.
+                His workshop at Nine Two Five Watch Repair &amp; Jewellery Repair is more than just a business - it&apos;s a place where customers become friends, and every repair tells a story. Andrew&apos;s commitment to quality workmanship and genuine care for his customers has made him a trusted name in the community.
               </p>
               <div className={`grid grid-cols-2 gap-6 transform transition-all duration-1000 ease-out delay-600 ${
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400 font-['Poppins']">25+</div>
+                  <div className="text-3xl font-bold text-yellow-400 font-['Poppins']">35+</div>
                   <div className="text-gray-400 font-['Inter']">Years Experience</div>
                 </div>
                 <div className="text-center">
@@ -604,7 +617,14 @@ export default function Home() {
                   <span className="text-2xl mr-4 mt-1">📞</span>
                   <div>
                     <p className="text-white font-semibold font-['Inter'] mb-1">Phone</p>
-                    <p className="text-gray-300 font-['Inter']">(416) 839-0071</p>
+                    <p className="text-gray-300 font-['Inter']">(416) 979-9883</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-2xl mr-4 mt-1">✉️</span>
+                  <div>
+                    <p className="text-white font-semibold font-['Inter'] mb-1">Email</p>
+                    <p className="text-gray-300 font-['Inter']">925@mail.com</p>
                   </div>
                 </div>
                 
