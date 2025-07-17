@@ -3,6 +3,29 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
+// Fade animation hook for hero headings
+function useFadeHeadings(headings: string[], fadeDuration = 1000, visibleDuration = 2000) {
+  const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true); // true: fade in, false: fade out
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (fade) {
+      // After fade in, stay visible for visibleDuration
+      timeout = setTimeout(() => setFade(false), visibleDuration);
+    } else {
+      // After fade out, switch heading and fade in
+      timeout = setTimeout(() => {
+        setIndex((prev) => (prev + 1) % headings.length);
+        setFade(true);
+      }, fadeDuration);
+    }
+    return () => clearTimeout(timeout);
+  }, [fade, headings.length, fadeDuration, visibleDuration]);
+
+  return { heading: headings[index], fadeIn: fade };
+}
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -293,6 +316,12 @@ export default function Home() {
     }
   };
 
+  // Fade animation for hero headings
+  const heroFade = useFadeHeadings([
+    "The Watch Hospital",
+    "Nine Two Five Watch and Jewellery Repair"
+  ]);
+
   return (
     <div className="min-h-screen bg-black text-white font-['Inter']">
       {/* Navigation */}
@@ -373,7 +402,16 @@ export default function Home() {
           <h1 className={`text-5xl md:text-6xl font-bold text-white mb-6 font-['Poppins'] transform transition-all duration-1000 ease-out ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            Nine Two Five Watch Repair & Jewellery Repair
+            <span
+              style={{
+                opacity: heroFade.fadeIn ? 1 : 0,
+                transition: `opacity 1s ease-in-out`,
+                display: 'inline-block',
+                minHeight: '1em',
+              }}
+            >
+              {heroFade.heading}
+            </span>
           </h1>
           <p className={`text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-['Inter'] transform transition-all duration-1000 ease-out delay-300 ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -671,7 +709,7 @@ export default function Home() {
       <footer className="bg-gray-900 py-8 border-t border-yellow-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gray-300 font-['Inter']">
-            © 2025 9 to 5 Watch Repair & Jewellery Repair. All rights reserved.
+            © 2025 Nine Two Five Watch Repair & Jewellery Repair. All rights reserved.
           </p>
         </div>
       </footer>
