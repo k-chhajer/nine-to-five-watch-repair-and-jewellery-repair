@@ -333,7 +333,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-yellow-400 font-['Poppins']">Nine Two Five Watch and Jewellery Repair</h1>
+              <h1 className="hidden md:block text-2xl font-bold text-yellow-400 font-['Poppins']">Nine Two Five Watch and Jewellery Repair</h1>
             </div>
             
             {/* Desktop Navigation */}
