@@ -16,8 +16,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "9 to 5 Watch Repair & Jewellery Repair - Professional Watch & Jewelry Repair Services",
-  description: "Expert watch repair, jewelry repair, and key cutting services in Toronto. Professional, reliable, and friendly service with over 20 years of experience.",
+  title: "Nine Two Five Watch Repairs | Downtown Toronto's most popular watch repair service",
+  description: "Nine Two Five Watch Repairs offers expert watch, jewellery, and fob repair services in downtown Toronto. Trusted by thousands for over 35 years. Visit us for fast, friendly, and reliable service!",
 };
 
 export default function RootLayout({

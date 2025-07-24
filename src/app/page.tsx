@@ -323,7 +323,7 @@ export default function Home() {
   ]);
 
   return (
-    <div className="min-h-screen bg-black text-white font-['Inter']">
+    <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
@@ -333,17 +333,17 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <h1 className="hidden md:block text-2xl font-bold text-yellow-400 font-['Poppins']">Nine Two Five Watch and Jewellery Repair</h1>
+              {/* Removed Nine Two Five Repair from navbar */}
             </div>
             
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-12 flex items-baseline space-x-8">
-                <a href="#home" onClick={(e) => handleSmoothScroll(e, 'home')} className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors font-['Inter']">Home</a>
-                <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors font-['Inter']">Services</a>
-                <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors font-['Inter']">About</a>
-                <a href="#reviews" onClick={(e) => handleSmoothScroll(e, 'reviews')} className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors font-['Inter']">Reviews</a>
-                <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors font-['Inter']">Contact</a>
+                <a href="#home" onClick={(e) => handleSmoothScroll(e, 'home')} className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors">Home</a>
+                <a href="#services" onClick={(e) => handleSmoothScroll(e, 'services')} className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors">Services</a>
+                <a href="#about" onClick={(e) => handleSmoothScroll(e, 'about')} className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors">About</a>
+                <a href="#reviews" onClick={(e) => handleSmoothScroll(e, 'reviews')} className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors">Reviews</a>
+                <a href="#contact" onClick={(e) => handleSmoothScroll(e, 'contact')} className="text-gray-300 hover:text-yellow-400 px-4 py-3 rounded-md text-base font-medium transition-colors">Contact</a>
               </div>
             </div>
 
@@ -366,11 +366,11 @@ export default function Home() {
               <div className={`px-4 pt-3 pb-4 space-y-2 sm:px-5 border-b border-yellow-500 transition-all duration-300 ${
                 isScrolled ? 'bg-black/95 backdrop-blur-sm' : 'bg-black/80 backdrop-blur-sm'
               }`}>
-                <a href="#home" onClick={(e) => { handleSmoothScroll(e, 'home'); handleNavigationClick(); }} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Home</a>
-                <a href="#services" onClick={(e) => { handleSmoothScroll(e, 'services'); handleNavigationClick(); }} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Services</a>
-                <a href="#about" onClick={(e) => { handleSmoothScroll(e, 'about'); handleNavigationClick(); }} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">About</a>
-                <a href="#reviews" onClick={(e) => { handleSmoothScroll(e, 'reviews'); handleNavigationClick(); }} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Reviews</a>
-                <a href="#contact" onClick={(e) => { handleSmoothScroll(e, 'contact'); handleNavigationClick(); }} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium font-['Inter']">Contact</a>
+                <a href="#home" onClick={(e) => { handleSmoothScroll(e, 'home'); handleNavigationClick(); }} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium">Home</a>
+                <a href="#services" onClick={(e) => { handleSmoothScroll(e, 'services'); handleNavigationClick(); }} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium">Services</a>
+                <a href="#about" onClick={(e) => { handleSmoothScroll(e, 'about'); handleNavigationClick(); }} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium">About</a>
+                <a href="#reviews" onClick={(e) => { handleSmoothScroll(e, 'reviews'); handleNavigationClick(); }} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium">Reviews</a>
+                <a href="#contact" onClick={(e) => { handleSmoothScroll(e, 'contact'); handleNavigationClick(); }} className="text-gray-300 hover:text-yellow-400 block px-4 py-3 rounded-md text-lg font-medium">Contact</a>
               </div>
             </div>
           )}
@@ -399,7 +399,7 @@ export default function Home() {
         ))}
         
         <div ref={heroRef} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className={`text-5xl md:text-6xl font-bold text-white mb-6 font-['Poppins'] transform transition-all duration-1000 ease-out ${
+          <h1 className={`text-5xl md:text-6xl font-bold text-white mb-6 transform transition-all duration-1000 ease-out ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <span
@@ -413,7 +413,7 @@ export default function Home() {
               {heroFade.heading}
             </span>
           </h1>
-          <p className={`text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto font-['Inter'] transform transition-all duration-1000 ease-out delay-300 ${
+          <p className={`text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto transform transition-all duration-1000 ease-out delay-300 ${
             isHeroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             Expert repairs for watches, jewellery, key cutting and fob duplication. Fast, friendly, and reliable service with over 35 years of experience.
@@ -424,14 +424,14 @@ export default function Home() {
             <a 
               href="#services" 
               onClick={(e) => handleSmoothScroll(e, 'services')}
-              className="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-3 rounded-lg font-semibold transition-colors font-['Inter']"
+              className="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Our Services
             </a>
             <a 
               href="#contact" 
               onClick={(e) => handleSmoothScroll(e, 'contact')}
-              className="bg-transparent border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-8 py-3 rounded-lg font-semibold transition-colors font-['Inter']"
+              className="bg-transparent border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Contact Us
             </a>
@@ -443,10 +443,10 @@ export default function Home() {
       <section id="services" className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={servicesHeaderRef} className="text-center mb-16">
-            <h2 className={`text-4xl font-bold text-white mb-4 font-['Poppins'] transform transition-all duration-1000 ease-out ${
+            <h2 className={`text-4xl font-bold text-white mb-4 transform transition-all duration-1000 ease-out ${
               isServicesHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>Our <span className="text-yellow-400">Services</span></h2>
-            <p className={`text-xl text-gray-300 max-w-2xl mx-auto font-['Inter'] transform transition-all duration-1000 ease-out delay-300 ${
+            <p className={`text-xl text-gray-300 max-w-2xl mx-auto transform transition-all duration-1000 ease-out delay-300 ${
               isServicesHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               Professional repair and duplication services for all your needs
@@ -475,11 +475,11 @@ export default function Home() {
                 
                 {/* Service Content */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-3 text-center font-['Poppins']">{service.title}</h3>
-                  <p className="text-gray-300 mb-4 text-center font-['Inter'] leading-relaxed text-sm">{service.description}</p>
+                  <h3 className="text-xl font-bold text-white mb-3 text-center">{service.title}</h3>
+                  <p className="text-gray-300 mb-4 text-center leading-relaxed text-sm">{service.description}</p>
                   <ul className="space-y-2">
                     {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="text-xs text-gray-400 flex items-center font-['Inter']">
+                      <li key={featureIndex} className="text-xs text-gray-400 flex items-center">
                         <span className="text-yellow-400 mr-2 text-sm">✓</span>
                         {feature}
                       </li>
@@ -497,7 +497,7 @@ export default function Home() {
         <div ref={aboutRef} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className={`text-4xl font-bold text-white mb-6 font-['Poppins'] transform transition-all duration-1000 ease-out ${
+              <h2 className={`text-4xl font-bold text-white mb-6 transform transition-all duration-1000 ease-out ${
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>Meet <span className="text-yellow-400">Andrew</span> - &quot;Mr Fix It&quot;</h2>
               
@@ -509,17 +509,17 @@ export default function Home() {
                 <p className="text-gray-300 font-['Inter'] mt-2">Andrew&apos;s Picture</p>
               </div>
               
-              <p className={`text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed transform transition-all duration-1000 ease-out delay-300 ${
+              <p className={`text-lg text-gray-300 mb-6 leading-relaxed transform transition-all duration-1000 ease-out delay-300 ${
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
                 Known as &quot;Mr Fix It&quot; around the neighborhood, Andrew is always willing to help fix your watches, get keys cut, or even help you out with anything else! With over 35 years of experience in the repair industry, he&apos;s become the go-to person for all things that need fixing.
               </p>
-              <p className={`text-lg text-gray-300 mb-6 font-['Inter'] leading-relaxed transform transition-all duration-1000 ease-out delay-400 ${
+              <p className={`text-lg text-gray-300 mb-6 leading-relaxed transform transition-all duration-1000 ease-out delay-400 ${
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
                 Always smiling, cheerful, and with a dry sense of humour, Andrew&apos;s passion for his craft shines through in every repair. Whether it&apos;s a delicate watch movement, a precious piece of jewellery, or a simple key duplication, he approaches each job with the same dedication and attention to detail.
               </p>
-              <p className={`text-lg text-gray-300 mb-8 font-['Inter'] leading-relaxed transform transition-all duration-1000 ease-out delay-500 ${
+              <p className={`text-lg text-gray-300 mb-8 leading-relaxed transform transition-all duration-1000 ease-out delay-500 ${
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
                 His workshop at Nine Two Five Watch Repair &amp; Jewellery Repair is more than just a business - it&apos;s a place where customers become friends, and every repair tells a story. Andrew&apos;s commitment to quality workmanship and genuine care for his customers has made him a trusted name in the community.
@@ -528,12 +528,12 @@ export default function Home() {
                 isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400 font-['Poppins']">35+</div>
-                  <div className="text-gray-400 font-['Inter']">Years Experience</div>
+                  <div className="text-3xl font-bold text-yellow-400">35+</div>
+                  <div className="text-gray-400">Years Experience</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400 font-['Poppins']">1000+</div>
-                  <div className="text-gray-400 font-['Inter']">Happy Customers</div>
+                  <div className="text-3xl font-bold text-yellow-400">1000+</div>
+                  <div className="text-gray-400">Happy Customers</div>
                 </div>
               </div>
             </div>
@@ -542,7 +542,7 @@ export default function Home() {
             }`}>
               <div className="text-center">
                 <span className="text-8xl mb-4 block">👨‍🔧</span>
-                <p className="text-gray-300 font-['Inter']">Andrew&apos;s Picture</p>
+                <p className="text-gray-300">Andrew&apos;s Picture</p>
               </div>
             </div>
           </div>
@@ -553,10 +553,10 @@ export default function Home() {
       <section id="reviews" className="py-20 bg-gray-900">
         <div ref={reviewsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                       <div className="text-center mb-16">
-              <h2 className={`text-4xl font-bold text-white mb-4 font-['Poppins'] transform transition-all duration-1000 ease-out ${
+              <h2 className={`text-4xl font-bold text-white mb-4 transform transition-all duration-1000 ease-out ${
                 isReviewsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}>What Our <span className="text-yellow-400">Customers Say</span></h2>
-            <p className={`text-xl text-gray-300 font-['Inter'] transform transition-all duration-1000 ease-out delay-300 ${
+            <p className={`text-xl text-gray-300 transform transition-all duration-1000 ease-out delay-300 ${
               isReviewsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>Read reviews from our satisfied customers</p>
           </div>
@@ -582,8 +582,8 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  <p className="text-gray-300 mb-3 italic font-['Inter'] leading-relaxed text-base">&quot;{review.comment}&quot;</p>
-                  <p className="text-yellow-400 font-semibold font-['Poppins'] text-sm">- {review.name}</p>
+                  <p className="text-gray-300 mb-3 italic leading-relaxed text-base">&quot;{review.comment}&quot;</p>
+                  <p className="text-yellow-400 font-semibold text-sm">- {review.name}</p>
                 </div>
               ))}
               {/* Duplicate reviews for seamless loop */}
@@ -599,8 +599,8 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  <p className="text-gray-300 mb-3 italic font-['Inter'] leading-relaxed text-base">&quot;{review.comment}&quot;</p>
-                  <p className="text-yellow-400 font-semibold font-['Poppins'] text-sm">- {review.name}</p>
+                  <p className="text-gray-300 mb-3 italic leading-relaxed text-base">&quot;{review.comment}&quot;</p>
+                  <p className="text-yellow-400 font-semibold text-sm">- {review.name}</p>
                 </div>
               ))}
             </div>
@@ -613,7 +613,7 @@ export default function Home() {
               href="https://www.google.com/search?q=9+to+5+watch+repair+jewellery+repair+reviews" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-3 rounded-lg font-semibold transition-colors font-['Inter']"
+              className="inline-flex items-center bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-3 rounded-lg font-semibold transition-colors"
             >
               <span className="mr-2">⭐</span>
               Read More Google Reviews
@@ -626,10 +626,10 @@ export default function Home() {
       <section id="contact" className="py-20 bg-black">
         <div ref={contactRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className={`text-4xl font-bold text-white mb-4 font-['Poppins'] transform transition-all duration-1000 ease-out ${
+            <h2 className={`text-4xl font-bold text-white mb-4 transform transition-all duration-1000 ease-out ${
               isContactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}><span className="text-yellow-400">Contact</span> Us</h2>
-            <p className={`text-xl text-gray-300 font-['Inter'] transform transition-all duration-1000 ease-out delay-300 ${
+            <p className={`text-xl text-gray-300 transform transition-all duration-1000 ease-out delay-300 ${
               isContactVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>Get in touch with us today</p>
           </div>
@@ -639,39 +639,39 @@ export default function Home() {
           }`}>
             {/* Contact Information */}
             <div className="bg-gray-800 rounded-2xl p-8 border border-yellow-500/20 shadow-lg">
-              <h3 className="text-2xl font-bold text-white mb-6 font-['Poppins']">Get In Touch</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Get In Touch</h3>
               
               <div className="space-y-8">
                 <div className="flex items-start">
                   <span className="text-2xl mr-4 mt-1">📍</span>
                   <div>
-                    <p className="text-white font-semibold font-['Inter'] mb-1">Address</p>
-                    <p className="text-gray-300 font-['Inter']">777 Bay Street, Toronto, ON M5G 2C8</p>
-                    <p className="text-gray-300 font-['Inter']">Across from Farm Boys</p>
+                    <p className="text-white font-semibold mb-1">Address</p>
+                    <p className="text-gray-300">777 Bay Street, Toronto, ON M5G 2C8</p>
+                    <p className="text-gray-300">Across from Farm Boys</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
                   <span className="text-2xl mr-4 mt-1">📞</span>
                   <div>
-                    <p className="text-white font-semibold font-['Inter'] mb-1">Phone</p>
-                    <p className="text-gray-300 font-['Inter']">(416) 979-9883</p>
+                    <p className="text-white font-semibold mb-1">Phone</p>
+                    <p className="text-gray-300">(416) 979-9883</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <span className="text-2xl mr-4 mt-1">✉️</span>
                   <div>
-                    <p className="text-white font-semibold font-['Inter'] mb-1">Email</p>
-                    <p className="text-gray-300 font-['Inter']">925@mail.com</p>
+                    <p className="text-white font-semibold mb-1">Email</p>
+                    <p className="text-gray-300">925@mail.com</p>
                   </div>
                 </div>
                 
                 <div className="flex items-start">
                   <span className="text-2xl mr-4 mt-1">🕐</span>
                   <div>
-                    <p className="text-white font-semibold font-['Inter'] mb-1">Hours</p>
-                    <p className="text-gray-300 font-['Inter']">Monday - Friday: 11:00 AM - 4:00 PM</p>
-                    <p className="text-gray-300 font-['Inter']">Saturday - Sunday: Closed</p>
+                    <p className="text-white font-semibold mb-1">Hours</p>
+                    <p className="text-gray-300">Monday - Friday: 11:00 AM - 4:00 PM</p>
+                    <p className="text-gray-300">Saturday - Sunday: Closed</p>
                   </div>
                 </div>
               </div>
@@ -679,7 +679,7 @@ export default function Home() {
             
             {/* Store Image */}
             <div className="bg-gray-800 rounded-2xl p-8 border border-yellow-500/20 shadow-lg">
-              <h3 className="text-2xl font-bold text-white mb-6 font-['Poppins']">Our Store</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Our Store</h3>
               <div className="space-y-4">
                 <div className="relative rounded-xl h-64 overflow-hidden">
                   <Image 
@@ -694,7 +694,7 @@ export default function Home() {
                     href="https://maps.google.com/?q=777+Bay+Street+Toronto+ON" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-lg font-semibold transition-colors font-['Inter']"
+                    className="inline-flex items-center bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-lg font-semibold transition-colors"
                   >
                     Open in Google Maps
                   </a>
@@ -708,7 +708,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-900 py-8 border-t border-yellow-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-300 font-['Inter']">
+          <p className="text-gray-300">
             © 2025 Nine Two Five Watch Repair & Jewellery Repair. All rights reserved.
           </p>
         </div>
