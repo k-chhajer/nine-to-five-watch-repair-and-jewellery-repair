@@ -16,8 +16,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Nine Two Five Watch Repairs | Downtown Toronto's most popular watch repair service",
-  description: "Nine Two Five Watch Repairs offers expert watch, jewellery, and fob repair services in downtown Toronto. Trusted by thousands for over 35 years. Visit us for fast, friendly, and reliable service!",
+  title: "Nine Two Five Watch and Jewellery Repairs | Downtown Toronto's Most Popular Watch Repair Service",
+  description: "Nine Two Five Watch and Jewellery Repairs offers expert watch, jewellery, and fob repair services in downtown Toronto. Trusted by thousands for over 35 years. Visit us for fast, friendly, and reliable service!",
 };
 
 export default function RootLayout({
